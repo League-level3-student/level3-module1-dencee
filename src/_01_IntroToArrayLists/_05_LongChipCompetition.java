@@ -1,6 +1,7 @@
 package _01_IntroToArrayLists;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
@@ -22,27 +23,33 @@ public class _05_LongChipCompetition {
 	void searchLongestChip() {
 		String beatleWithLongestName = null;
 		double longestChipLength = 0.0;
-//		ArrayList<Integer> ial = new Array
+		ArrayList<Double> dal = new ArrayList<Double>();
 		
 		initializeBeatles();
 		
-		for( Beatle b : getTheBand() ) {
-			
-//			System.out.println(b.getName() + ": " );
+		for( Beatle b : getTheBand() ) {	
+			System.out.println( "Beatle " + b.getName() + ": " );
 			
 			for( Chip chip : b.getChips() ) {
 				
-				System.out.print( chip.getLength() + "\n" );
+				// For debug only
+				dal.add(chip.getLength());
 				
 				if( chip.getLength() > longestChipLength ) {
 					longestChipLength = chip.getLength();
 					beatleWithLongestName = b.getName();
 				}
 			}
-//			System.out.print("\n");
+			dal.sort(null);
+			Collections.reverse(dal);
+			for( Double d : dal ) {
+				System.out.print(d.doubleValue());
+			}
+			dal.clear();
+			System.out.print("\n");
 		}
 		
-		System.out.println( beatleWithLongestName + " has the longest chip: " + longestChipLength );
+		System.out.print( "\n" + beatleWithLongestName + " has the longest chip: " + longestChipLength );
 	}
 	
 	private void initializeBeatles() {
