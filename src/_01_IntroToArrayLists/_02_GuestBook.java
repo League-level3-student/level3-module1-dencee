@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import intro_to_array_lists.GuestBook;
+//import intro_to_array_lists.GuestBook;
 
 public class _02_GuestBook implements ActionListener {
 	JFrame frame = new JFrame();

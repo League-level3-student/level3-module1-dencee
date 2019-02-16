@@ -16,7 +16,33 @@ public class _05_LongChipCompetition {
 
 	public static void main(String[] args) {
 		_05_LongChipCompetition lcc = new _05_LongChipCompetition();
+		lcc.searchLongestChip();
+	}
+	
+	void searchLongestChip() {
+		String beatleWithLongestName = null;
+		double longestChipLength = 0.0;
+//		ArrayList<Integer> ial = new Array
 		
+		initializeBeatles();
+		
+		for( Beatle b : getTheBand() ) {
+			
+//			System.out.println(b.getName() + ": " );
+			
+			for( Chip chip : b.getChips() ) {
+				
+				System.out.print( chip.getLength() + "\n" );
+				
+				if( chip.getLength() > longestChipLength ) {
+					longestChipLength = chip.getLength();
+					beatleWithLongestName = b.getName();
+				}
+			}
+//			System.out.print("\n");
+		}
+		
+		System.out.println( beatleWithLongestName + " has the longest chip: " + longestChipLength );
 	}
 	
 	private void initializeBeatles() {
