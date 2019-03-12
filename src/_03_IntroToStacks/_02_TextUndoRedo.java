@@ -26,7 +26,8 @@ public class _02_TextUndoRedo implements KeyListener {
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
 	JLabel label = new JLabel();
-	Stack<String> text = new Stack<String>();
+	Stack<Character> delChars = new Stack<Character>();
+	String typedStr = "You typed: ";
 
 	public static void main(String[] args) {
 		new _02_TextUndoRedo().start();
@@ -38,7 +39,7 @@ public class _02_TextUndoRedo implements KeyListener {
 		frame.addKeyListener(this);
 		frame.getContentPane().add(panel);
 
-		label.setText(text.push("You typed: "));
+		label.setText(typedStr);
 		panel.add(label);
 
 		frame.pack();
@@ -55,11 +56,14 @@ public class _02_TextUndoRedo implements KeyListener {
 		char keyPressed = e.getKeyChar();
 
 		if (keyPressed == KeyEvent.VK_BACK_SPACE) {
-			text.pop();
+		    typedStr = typedStr.substring( 0, typedStr.length() - 1 );
+		    delChars.push( keyPressed );
+		} else if (keyPressed == KeyEvent.VK_NUMPAD0 ) {
+		    typedStr = typedStr + delChars.pop();
 		} else {
-			text.push("" + keyPressed);
-			label.setText(text.peek());
+		    typedStr += keyPressed;
 		}
+		label.setText( typedStr );
 		frame.pack();
 	}
 
