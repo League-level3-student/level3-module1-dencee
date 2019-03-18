@@ -27,8 +27,9 @@ public class _02_TextUndoRedo implements KeyListener {
 	JPanel panel = new JPanel();
 	JLabel label = new JLabel();
 	Stack<Character> delChars = new Stack<Character>();
-	String typedStr = "You typed: ";
-
+	String startMessage = "You typed: ";
+	String typedStr = startMessage;
+	
 	public static void main(String[] args) {
 		new _02_TextUndoRedo().start();
 	}
@@ -56,11 +57,21 @@ public class _02_TextUndoRedo implements KeyListener {
 		char keyPressed = e.getKeyChar();
 
 		if (keyPressed == KeyEvent.VK_BACK_SPACE) {
-		    typedStr = typedStr.substring( 0, typedStr.length() - 1 );
-		    delChars.push( keyPressed );
-		} else if (keyPressed == KeyEvent.VK_NUMPAD0 ) {
-		    typedStr = typedStr + delChars.pop();
+		    System.out.println( "backspace" );
+	        
+		    if( typedStr.length() > startMessage.length() ) {
+		        delChars.push( typedStr.charAt( typedStr.length() - 1 ) );
+		        typedStr = typedStr.substring( 0, typedStr.length() - 1 );
+		    }
+		    
+		} else if (keyPressed == '\\' ) {
+		    System.out.println( "alt" );
+		    
+		    if( !delChars.isEmpty() ) {
+		        typedStr = typedStr + delChars.pop();
+		    }
 		} else {
+		    System.out.println( keyPressed );
 		    typedStr += keyPressed;
 		}
 		label.setText( typedStr );
